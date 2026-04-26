@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+tokens
+userDataDir
+.docker/wppconnect/tokens
+.docker/wppconnect/userDataDir
+.wppconnect
