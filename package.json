@@ -5,7 +5,9 @@
   "main": "dist/main.js",
   "scripts": {
     "start": "tsx src/main.ts",
-    "watch": "tsx watch src/main.ts"
+    "watch": "tsx watch src/main.ts",
+    "session:start": "tsx src/session-service.ts",
+    "session:watch": "tsx watch src/session-service.ts"
   },
   "keywords": [],
   "author": "",

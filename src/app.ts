@@ -4,16 +4,20 @@ import { HealthController } from "./api/controllers/health.controller";
 import { OffersController } from "./api/controllers/offers.controller";
 import { SendOfferToGroupUseCase } from "./application/use-cases/send-offer-to-group.use-case";
 import { SendTestMessageUseCase } from "./application/use-cases/send-test-message.use-case";
+import { MessageGateway } from "./application/contracts/message-gateway";
 import { AppError } from "./shared/errors/app-error";
 import { swaggerDocument } from "./infrastructure/docs/swagger";
 import { WppConnectClient } from "./infrastructure/wppconnect";
+import { HttpMessageGateway } from "./infrastructure/wppconnect/http-message-gateway";
+import { env } from "./infrastructure/config/env";
 
 const app = express();
 app.use(express.json());
 
-const wppConnectClient = new WppConnectClient();
-const sendOfferToGroupUseCase = new SendOfferToGroupUseCase(wppConnectClient);
-const sendTestMessageUseCase = new SendTestMessageUseCase(wppConnectClient);
+const wppConnectClient = env.WPP_GATEWAY_MODE === "embedded" ? new WppConnectClient() : null;
+const messageGateway: MessageGateway = wppConnectClient ?? new HttpMessageGateway();
+const sendOfferToGroupUseCase = new SendOfferToGroupUseCase(messageGateway);
+const sendTestMessageUseCase = new SendTestMessageUseCase(messageGateway);
 const healthController = new HealthController();
 const offersController = new OffersController(sendOfferToGroupUseCase, sendTestMessageUseCase);
 

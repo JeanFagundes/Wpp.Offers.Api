@@ -6,6 +6,10 @@ config();
 const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  WPP_GATEWAY_MODE: z.enum(["embedded", "remote"]).default("embedded"),
+  WPP_REMOTE_BASE_URL: z.string().default("http://localhost:3100"),
+  WPP_REMOTE_TIMEOUT_MS: z.coerce.number().default(10000),
+  WPP_SESSION_SERVICE_PORT: z.coerce.number().default(3100),
   WPP_SESSION_NAME: z.string().default("offers-session"),
   WPP_SESSIONS: z.string().default(""),
   WPP_PHONE_NUMBER: z.string().optional().default(""),

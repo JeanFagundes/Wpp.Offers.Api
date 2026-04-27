@@ -3,7 +3,9 @@ import { env } from "./infrastructure/config/env";
 import { logger } from "./infrastructure/logging/logger";
 
 async function bootstrap(): Promise<void> {
-  await wppConnectClient.initialize();
+  if (wppConnectClient) {
+    await wppConnectClient.initialize();
+  }
 
   app.listen(env.PORT, () => {
     logger.info(`API iniciada na porta ${env.PORT} em ambiente ${env.NODE_ENV}.`);
