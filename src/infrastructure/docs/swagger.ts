@@ -113,7 +113,7 @@ export const swaggerDocument = {
     schemas: {
       SendOfferRequest: {
         type: "object",
-        required: ["title", "affiliateLink"],
+        required: ["title", "price", "imageUrl", "productLink"],
         properties: {
           recipientId: {
             type: "string",
@@ -129,14 +129,28 @@ export const swaggerDocument = {
             type: "string",
             example: "Notebook em promocao",
           },
+          price: {
+            type: "string",
+            example: "R$ 1.023,90",
+          },
+          imageUrl: {
+            type: "string",
+            format: "uri",
+            example: "https://m.media-amazon.com/images/I/61WVaHVh9fL._AC_UL320_.jpg",
+          },
           description: {
             type: "string",
             example: "Oferta valida ate acabar o estoque",
           },
-          affiliateLink: {
+          productLink: {
             type: "string",
             format: "uri",
-            example: "https://seulink.com/oferta",
+            example: "https://www.amazon.com.br/dp/B0ABC12345",
+          },
+          affiliateCode: {
+            type: "string",
+            description: "Opcional. Sobrescreve o AFFILIATE_CODE do .env para esta oferta.",
+            example: "seu-codigo-afiliado",
           },
         },
       },

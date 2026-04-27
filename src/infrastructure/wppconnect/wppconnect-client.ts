@@ -68,6 +68,18 @@ export class WppConnectClient implements MessageGateway {
     await client.sendText(normalizedRecipientId, message);
   }
 
+  async sendImage(recipientId: string, imageUrl: string, caption?: string): Promise<void> {
+    await this.sessionManager.initSession({ session: env.WPP_SESSION_NAME });
+    const client = this.sessionManager.getClient(env.WPP_SESSION_NAME);
+    const normalizedRecipientId = this.normalizeRecipientId(recipientId);
+
+    if (!client) {
+      throw new AppError("Sessao do WhatsApp ainda nao autenticada. Use o codigo de pareamento primeiro.", 409);
+    }
+
+    await client.sendImage(normalizedRecipientId, imageUrl, "offer-image", caption ?? "");
+  }
+
   async getSessionStatus(): Promise<AuthCodeDetailedResult["lastResponse"]> {
     const sessionState = this.sessionManager.getState(env.WPP_SESSION_NAME);
     return {

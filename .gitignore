@@ -6,3 +6,4 @@ userDataDir
 .docker/wppconnect/tokens
 .docker/wppconnect/userDataDir
 .wppconnect
+session

@@ -1,6 +1,7 @@
 export interface OfferMessageProps {
   title: string;
-  affiliateLink: string;
+  price: string;
+  normalizedAffiliateLink: string;
   description?: string;
 }
 
@@ -9,6 +10,6 @@ export class OfferMessage {
 
   buildText(): string {
     const description = this.props.description ? `${this.props.description}\n\n` : "";
-    return `🔥 *${this.props.title}*\n\n${description}👉 ${this.props.affiliateLink}`;
+    return `🔥 *${this.props.title}*\n💰 *${this.props.price}*\n\n${description}👉 ${this.props.normalizedAffiliateLink}`;
   }
 }
