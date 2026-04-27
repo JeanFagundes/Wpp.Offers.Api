@@ -34,14 +34,6 @@ const envSchema = z.object({
     .optional()
     .transform((value) => value !== "false"),
   WPP_TEST_RECIPIENT: z.string().optional(),
-  AFFILIATE_CODE: z.string().default(""),
-  AFFILIATE_PARAM_NAME: z.string().default("tag"),
-  AFFILIATE_LINK_SHORTENER_ENABLED: z
-    .string()
-    .optional()
-    .transform((value) => value !== "false"),
-  AFFILIATE_LINK_SHORTENER_URL: z.string().default("https://is.gd/create.php"),
-  AFFILIATE_LINK_SHORTENER_TIMEOUT_MS: z.coerce.number().default(5000),
   WPP_LOG_LEVEL: z.string().default("info"),
 });
 

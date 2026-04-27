@@ -149,11 +149,6 @@ export const swaggerDocument = {
             format: "uri",
             example: "https://www.amazon.com.br/dp/B0ABC12345",
           },
-          affiliateCode: {
-            type: "string",
-            description: "Opcional. Sobrescreve o AFFILIATE_CODE do .env para esta oferta.",
-            example: "seu-codigo-afiliado",
-          },
         },
       },
       SendTestRequest: {
