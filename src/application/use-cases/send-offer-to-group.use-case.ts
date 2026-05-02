@@ -9,6 +9,7 @@ const sendOfferSchema = z
     groupId: z.string().min(5).optional(),
     title: z.string().min(3),
     price: z.string().min(1),
+    previousPrice: z.string().min(1).optional(),
     imageUrl: z.url(),
     description: z.string().optional(),
     productLink: z.url(),
@@ -36,6 +37,7 @@ export class SendOfferToGroupUseCase {
       price: data.price,
       productLink: data.productLink,
       ...(data.description ? { description: data.description } : {}),
+      ...(data.previousPrice ? { previousPrice: data.previousPrice } : {}),
     });
 
     await this.messageGateway.sendImage(recipientId, data.imageUrl, offerMessage.buildText());

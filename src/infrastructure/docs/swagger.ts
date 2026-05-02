@@ -133,7 +133,12 @@ export const swaggerDocument = {
           },
           price: {
             type: "string",
-            example: "R$ 1.023,90",
+            example: "60,00",
+          },
+          previousPrice: {
+            type: "string",
+            description: "Preco anterior (de lista), quando houver desconto — alinhado ao campo previousPrice do scraper.",
+            example: "80,00",
           },
           imageUrl: {
             type: "string",
